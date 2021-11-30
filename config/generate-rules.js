@@ -97,7 +97,7 @@ module.exports = {
       ),
     ];
   },
-  generateStyleRule: (isProd) => {
+  createStyleRuleGenerator: (isProd) => {
     // @ts-ignore
     const generateUse = (forCSSModules = false, moreLoaders = []) => [
       isProd ? MiniCssExtractPlugin.loader : "style-loader",
