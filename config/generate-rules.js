@@ -97,8 +97,7 @@ module.exports = {
       ),
     ];
   },
-  // @ts-ignore
-  generateStyleRules: (isProd) => {
+  generateStyleRule: (isProd) => {
     // @ts-ignore
     const generateUse = (forCSSModules = false, moreLoaders = []) => [
       isProd ? MiniCssExtractPlugin.loader : "style-loader",
@@ -106,7 +105,7 @@ module.exports = {
       ...moreLoaders,
     ];
     // @ts-ignore
-    const generateRule = (ext, moreLoaders = []) => {
+    const ruleGenerator = (ext, moreLoaders = []) => {
       const regularStyleRegex = new RegExp(`\\.${ext}$`, "i");
       const cssModuleRegex = new RegExp(`\\.module\\.${ext}$`, "i");
       return [
@@ -121,10 +120,13 @@ module.exports = {
         },
       ];
     };
+    return ruleGenerator;
+    /*
     return [
       ...generateRule("css"),
       ...generateRule("less", ["less-loader"]),
       ...generateRule("scss", ["resolve-url-loader", "sass-loader"]),
     ];
+    */
   },
 };
